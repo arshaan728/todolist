@@ -1,11 +1,12 @@
-/*java script part*/
+/*getting all the classes and putting in a constant*/
+
 const todoInput = document.querySelector('.todo-input');
 const todoButton = document.querySelector('.todo-button');
 const todoList = document.querySelector('.todo-list');
 const filterOption = document.querySelector('.filter-todo');
 const finaliselist = document.querySelector('.finalise-list');
 
-
+/* making a even listener inorder to make the function work when the button is clicked*/
 document.addEventListener('DOMContentLoaded',getodos);
 
 todoButton.addEventListener('click',addTodo);
@@ -13,10 +14,13 @@ todoList.addEventListener('click',deleteCheck);
 filterOption.addEventListener('click',filterTodo);
 finaliselist.addEventListener('click',addtoflist);
 
+/* function is clear the list , it clears the local storage and reloads the page*/
 function addtoflist() {
   localStorage.clear();
   location.reload();
 }
+/* works when the item is added to the list , each time when is entered it creates a new div tag and a line and a complete button and 
+a delete button and also records the entered value */
 function addTodo(event) {
     event.preventDefault();
 
@@ -44,7 +48,8 @@ function addTodo(event) {
 
     todoInput.value="";
 }
-
+/*when the delete button is clicked it checks whether the delete or complete button is clicked , if delete is clicked it removes from the list 
+if complete is clicked a animation will work*/
 function deleteCheck(e) {
     const item = e.target;
 
@@ -60,6 +65,7 @@ function deleteCheck(e) {
     }
 }
 
+/* to filter the completed , deleted and all items in the list*/
 function filterTodo(e) {
     const todos = todoList.childNodes;
    
@@ -82,7 +88,7 @@ function filterTodo(e) {
     });
  
 }
-
+/* saves the items in the local storage , happens when it is called when adding the items to list */
 function savelocaltodos(todo) {
     let todos;
     if(localStorage.getItem('todos')==null) {
@@ -95,6 +101,7 @@ function savelocaltodos(todo) {
     localStorage.setItem("todos",JSON.stringify(todos));
 }
 
+/* displays the items in local storage by creating the design all over again */
 function getodos() {
        let todos;
     if(localStorage.getItem('todos')==null) {
@@ -131,6 +138,7 @@ function getodos() {
     
 }
 
+/* deletes the item in local storage when delete is clicked */
 function deletetodos(todo) {
     console.log("scsc");
     let todos;
